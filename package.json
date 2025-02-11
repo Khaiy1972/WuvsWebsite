@@ -11,6 +11,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@mui/icons-material": "^6.4.3",
     "@tailwindcss/vite": "^4.0.6",
     "path": "^0.12.7",
     "react": "^19.0.0",
