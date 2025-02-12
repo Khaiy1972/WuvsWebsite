@@ -1,5 +1,6 @@
 {
 	"name": "wuvswebsite",
+	"homepage": "https://Khaiy1972.github.io/WuvsWebsite/",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
@@ -9,7 +10,9 @@
 		"lint": "eslint .",
 		"preview": "vite preview",
 		"server": "vite --host",
-		"prepare": "husky"
+		"prepare": "husky",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d dist"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.14.0",
@@ -20,6 +23,7 @@
 		"@tailwindcss/vite": "^4.0.6",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
+		"gh-pages": "^6.3.0",
 		"lucide-react": "^0.475.0",
 		"path": "^0.12.7",
 		"react": "^19.0.0",
