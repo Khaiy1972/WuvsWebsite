@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 
 type TimerProps = {
 	setIsTimerReady: (isReady: boolean) => void;
 };
 
+// Define a type for the countdown time structure
 type TimeLeft = {
 	days: number;
 	hours: number;
@@ -14,13 +15,15 @@ type TimeLeft = {
 
 const Timer: React.FC<TimerProps> = ({ setIsTimerReady }) => {
 	const calculateTimeLeft = (): TimeLeft => {
-		const difference = +new Date(`2025-02-14T08:00:00`) - +new Date();
+		const targetTime = new Date('2025-02-14T08:00:00').getTime();
+		const now = new Date().getTime();
+		const difference = targetTime - now;
 
 		if (difference > 0) {
 			return {
 				days: Math.floor(difference / (1000 * 60 * 60 * 24)),
 				hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-				minutes: Math.floor((difference / 1000 / 60) % 60),
+				minutes: Math.floor((difference / (1000 * 60)) % 60),
 				seconds: Math.floor((difference / 1000) % 60),
 			};
 		}
@@ -31,29 +34,36 @@ const Timer: React.FC<TimerProps> = ({ setIsTimerReady }) => {
 	const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
 
 	useEffect(() => {
-		const timer = setTimeout(() => {
+		const timer = setInterval(() => {
 			const newTimeLeft = calculateTimeLeft();
 			setTimeLeft(newTimeLeft);
 
 			if (!newTimeLeft) {
 				setIsTimerReady(true);
+				clearInterval(timer);
 			}
 		}, 1000);
 
-		return () => clearTimeout(timer);
+		return () => clearInterval(timer);
 	});
 
 	return (
 		<div className="bg-background flex h-screen w-screen items-center justify-center">
-			{timeLeft ? (
-				Object.entries(timeLeft).map(([interval, value]) => (
-					<h1 key={interval} className="text-6xl">
-						{value} {interval}{' '}
-					</h1>
-				))
-			) : (
-				<Navigate to={'/Home'} />
-			)}
+			<div className="bg-card shadow-card-foreground border-border inset-shadow-md flex w-1/3 flex-col items-center space-y-4 rounded-2xl border-2 p-8">
+				<h1 className="text-4xl font-bold">Countdown Timer</h1>
+				<div className="flex gap-18">
+					{timeLeft ? (
+						Object.entries(timeLeft).map(([unit, value]) => (
+							<div key={unit} className="flex flex-col items-center">
+								<span className="text-6xl font-bold">{value}</span>
+								<span className="text-lg capitalize">{value <= 1 ? unit.slice(0, -1) : unit}</span>
+							</div>
+						))
+					) : (
+						<span className="text-6xl font-bold">Time's up!</span>
+					)}
+				</div>
+			</div>
 		</div>
 	);
 };
