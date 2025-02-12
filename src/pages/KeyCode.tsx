@@ -38,11 +38,11 @@ const KeyCode: React.FC = () => {
 	return (
 		<div className="bg-background flex h-screen w-screen items-center justify-center">
 			<Toaster richColors position="top-center" />
-			<div className="bg-card flex h-5/6 w-3/4 items-center justify-center gap-10 rounded-2xl shadow-lg">
+			<div className="bg-card flex h-5/6 w-[95%] flex-col items-center justify-center gap-4 rounded-2xl pt-4 shadow-lg md:w-auto md:flex-row md:gap-10 md:p-0 md:px-10">
 				<img
 					src={coverPhoto}
 					alt="Cover Photo"
-					className="aspect-square h-5/6 rounded-2xl object-cover object-[55%_50%]"
+					className="aspect-square w-3/6 rounded-2xl object-cover object-[55%_50%] md:h-5/6"
 				/>
 
 				<form className="flex flex-col gap-4 p-4" onSubmit={handleSubmit}>

@@ -49,9 +49,9 @@ const Timer: React.FC<TimerProps> = ({ setIsTimerReady }) => {
 
 	return (
 		<div className="bg-background flex h-screen w-screen items-center justify-center">
-			<div className="bg-card shadow-card-foreground border-border inset-shadow-md flex w-1/3 flex-col items-center space-y-4 rounded-2xl border-2 p-8">
+			<div className="bg-card shadow-card-foreground border-border inset-shadow-md flex w-auto flex-col items-center space-y-4 rounded-2xl border-2 p-8">
 				<h1 className="text-4xl font-bold">Countdown Timer</h1>
-				<div className="flex gap-18">
+				<div className="flex gap-8 md:gap-18">
 					{timeLeft ? (
 						Object.entries(timeLeft).map(([unit, value]) => (
 							<div key={unit} className="flex flex-col items-center">
