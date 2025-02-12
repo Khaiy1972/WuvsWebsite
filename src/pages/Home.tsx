@@ -3,7 +3,7 @@ import React from 'react';
 import { Favorite } from '@mui/icons-material';
 
 // components
-import { PhotoMessageCard } from '@src/components';
+import { PhotoMessageCard, Envelope } from '@src/components';
 
 // images
 import { kathPhotos, nickoPhotos } from '@src/libs/utils';
@@ -36,6 +36,15 @@ const Home: React.FC = () => {
 					photoMessage={` Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo provident dicta
         numquam est, aliquid, hic ad libero, omnis quo nesciunt obcaecati autem neque
         delectus sequi molestiae totam placeat. Consectetur, suscipit.`}
+				/>
+				<Envelope
+					addressTo="Dear Wuvs"
+					message={`   Thank you my love for being my valentine's! I know valentine's day are one of the most
+								important day for a girl with their partner to celebrate with. I'm so grateful to have you in my life
+								and I'm so lucky to have you as my partner. I love you so much and I'm so thankful for everything about
+								you, for supporting me, for caring me, and for loving me. Always remember my love that I'm here for you
+								and I will do my very best to make you the happiest woman in the world.`}
+					fromWho="-Mr. Wuvs"
 				/>
 			</section>
 		</>

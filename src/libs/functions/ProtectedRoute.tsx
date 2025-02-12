@@ -23,7 +23,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ isTimerReady, children 
 		);
 	}
 
-	return <>{children}</>;
+	return children;
 };
 
 export default ProtectedRoute;

@@ -67,6 +67,10 @@
 	--input: #4d2d2d;
 	--ring: #ff4d6e;
 	--radius: 0.5rem;
+
+	--env-border-radius: 6px;
+	--env-width: 50vw;
+	--env-height: 50vh;
 }
 
 .dark {
