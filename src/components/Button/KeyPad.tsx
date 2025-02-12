@@ -14,16 +14,32 @@ const KeyPad: React.FC<KeyPadProps> = ({ onNumberClick, onClearClick, onBackspac
 			{Array(9)
 				.fill(0)
 				.map((_, i) => (
-					<Button value={i + 1} onClick={() => onNumberClick(i + 1)}>
+					<Button
+						className="text-background h-auto text-2xl font-semibold"
+						variant={'default'}
+						type="button"
+						key={i}
+						value={i + 1}
+						onClick={() => onNumberClick(i + 1)}
+					>
 						{i + 1}
 					</Button>
 				))}
 
-			<Button onClick={onClearClick}>Clear</Button>
-			<Button value="0" onClick={() => onNumberClick(0)}>
+			<Button className="text-background h-auto text-2xl font-semibold" type="button" onClick={onClearClick}>
+				Clear
+			</Button>
+			<Button
+				className="text-background h-auto text-2xl font-semibold"
+				type="button"
+				value="0"
+				onClick={() => onNumberClick(0)}
+			>
 				0
 			</Button>
-			<Button onClick={onBackspaceClick}>Delete</Button>
+			<Button className="text-background h-auto text-2xl font-semibold" type="button" onClick={onBackspaceClick}>
+				Delete
+			</Button>
 		</div>
 	);
 };

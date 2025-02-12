@@ -15,10 +15,15 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ isTimerReady, children 
 	}
 
 	if (!isTimerReady) {
-		return <Navigate to="/timer" />;
+		return (
+			<>
+				{children}
+				<Navigate to="/timer" />
+			</>
+		);
 	}
 
-	return children;
+	return <>{children}</>;
 };
 
 export default ProtectedRoute;
