@@ -25,10 +25,7 @@ const Home: React.FC = () => {
 				</div>
 			</section>
 
-			<section
-				id="message"
-				className="flex w-screen flex-col items-center gap-10 bg-(--color-background) p-4 md:gap-4 md:bg-(--color-background) md:p-0"
-			>
+			<section id="message" className="bg-background flex w-screen flex-col items-center gap-10 p-4 md:gap-4">
 				<Envelope
 					addressTo="Dear Wuvs"
 					message={`   Thank you my love for being my valentine's! I know valentine's day are one of the most
@@ -40,10 +37,7 @@ const Home: React.FC = () => {
 				/>
 			</section>
 
-			<section
-				id="gallery"
-				className="flex flex-col items-center gap-10 bg-(--color-background) p-4 pt-20 md:gap-4 md:bg-(--color-background) md:p-0"
-			>
+			<section id="gallery" className="bg-background flex flex-col items-center gap-10 p-4 pt-20 md:gap-4">
 				<PhotoMessageCard
 					photoSRC={nickoPhotos[0]}
 					label={'My thoughts'}
