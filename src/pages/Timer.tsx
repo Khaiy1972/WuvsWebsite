@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import { Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 type TimerProps = {
 	setIsTimerReady: (isReady: boolean) => void;
@@ -15,7 +15,7 @@ type TimeLeft = {
 
 const Timer: React.FC<TimerProps> = ({ setIsTimerReady }) => {
 	const calculateTimeLeft = (): TimeLeft => {
-		const targetTime = new Date('2025-02-14T08:00:00').getTime();
+		const targetTime = new Date('2025-02-12T08:00:00').getTime();
 		const now = new Date().getTime();
 		const difference = targetTime - now;
 
@@ -60,7 +60,7 @@ const Timer: React.FC<TimerProps> = ({ setIsTimerReady }) => {
 							</div>
 						))
 					) : (
-						<span className="text-6xl font-bold">Time's up!</span>
+						<Navigate to="/home" />
 					)}
 				</div>
 			</div>

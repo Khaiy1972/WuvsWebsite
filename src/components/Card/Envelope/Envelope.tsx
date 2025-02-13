@@ -1,6 +1,8 @@
 // libraries
 import React, { useState } from 'react';
 
+import { useViewport } from '@src/libs';
+
 // components
 import { Button } from '@src/components';
 
@@ -13,26 +15,35 @@ type EnvelopeProps = {
 };
 
 const Envelope: React.FC<EnvelopeProps> = ({ addressTo, message, fromWho }) => {
+	const { viewportW } = useViewport();
 	const [startAnimation, setStartAnimation] = useState(false);
 
 	return (
 		<>
-			<div className={style.envlopeWrapper}>
-				<div className={`${startAnimation ? style.open : style.close} ${style.envelope}`}>
-					<div className={`${style.front} ${style.flap}`}></div>
-					<div className={`${style.front} ${style.pocket}`}></div>
+			<div className={viewportW > 768 ? style.envlopeWrapper : style.miniEnvlopeWrapper}>
+				<div
+					className={`${startAnimation ? style.open : style.close} ${viewportW > 768 ? style.envelope : style.miniEnvelope}`}
+				>
+					<div className={`${style.front} ${viewportW > 768 ? style.flap : style.miniFlap}`}></div>
+					<div className={`${style.front} ${viewportW > 768 ? style.pocket : style.miniPocket}`}></div>
 
-					<div className={style.letter}>
+					<div className={viewportW > 768 ? style.letter : style.miniLetter}>
 						{addressTo && (
-							<div className={`${startAnimation ? style.open : style.close} ${style.words} ${style.line1}`}>
+							<div
+								className={`${startAnimation ? style.open : style.close} ${viewportW > 768 ? style.words : style.miniWords} ${style.line1}`}
+							>
 								<p>{addressTo}</p>
 							</div>
 						)}
-						<div className={`${startAnimation ? style.open : style.close} ${style.words} ${style.line2}`}>
+						<div
+							className={`${startAnimation ? style.open : style.close} ${viewportW > 768 ? style.words : style.miniWords} ${style.line2}`}
+						>
 							<p>{message}</p>
 						</div>
 						{fromWho && (
-							<div className={`${startAnimation ? style.open : style.close} ${style.words} ${style.line3}`}>
+							<div
+								className={`${startAnimation ? style.open : style.close} ${viewportW > 768 ? style.words : style.miniWords} ${style.line3}`}
+							>
 								<p>{fromWho}</p>
 							</div>
 						)}

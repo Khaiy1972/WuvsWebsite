@@ -71,6 +71,9 @@
 	--env-border-radius: 6px;
 	--env-width: 50vw;
 	--env-height: 50vh;
+
+	--miniEnv-width: 95vw;
+	--miniEnv-height: 60vh;
 }
 
 .dark {
