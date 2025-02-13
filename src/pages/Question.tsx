@@ -37,6 +37,8 @@ const Question: React.FC<QuestionProps> = ({ setIsSaidYes }) => {
 		<div className="flex h-screen w-screen flex-col items-center justify-center">
 			<div className="bg-card shadow-card-foreground border-border inset-shadow-md flex w-auto flex-col items-center space-y-4 rounded-2xl border-2 p-8">
 				<img src={dudu} alt="dudu" className="" />
+
+				<h2 className="text-center">Will you be my Valentine??</h2>
 				<div className="flex items-center gap-4">
 					<Button
 						onClick={() => {
