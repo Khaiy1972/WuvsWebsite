@@ -47,7 +47,7 @@ const Home: React.FC = () => {
 				<PhotoMessageCard
 					photoSRC={nickoPhotos[0]}
 					label={'My thoughts'}
-					photoMessage={`My love, thank you for always cheering me up when I'm down, for always making me laugh when I'm sad, for always being there for me when I need you, for always supporting me in everything I do, and for always loving me unconditionally. I'm so lucky to have you in my life, I love you so much my love.`}
+					photoMessage={`My thoughts about our relationship is that it's not perfect but it's real. Its not like any other relationship that we see in the internet or the people around us, yes its not perfect but we made real, with all the experience that we been through, the memories that we share, all the efforts that we made, all the sacrifices, and all the love that we put into our ralationship is real. No one can bring us apart, because we are strong my love. I never ever doubted our love for each other, because the moment you said yes to me, it clicked me, like a spark that goes throughout my body signifying that we are now connected to each other. I love you my baby, from then, now, and forever.`}
 				/>
 				<PhotoMessageCard
 					photoSRC={kathPhotos[0]}
