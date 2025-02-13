@@ -15,7 +15,7 @@ type TimeLeft = {
 
 const Timer: React.FC<TimerProps> = ({ setIsTimerReady }) => {
 	const calculateTimeLeft = (): TimeLeft => {
-		const targetTime = new Date('2025-02-12T08:00:00').getTime();
+		const targetTime = new Date('2025-02-14T08:00:00').getTime();
 		const now = new Date().getTime();
 		const difference = targetTime - now;
 

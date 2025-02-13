@@ -7,7 +7,7 @@ import { Home, KeyCode, Question, Timer } from '@src/pages';
 import ProtectedRoute from './libs/functions/ProtectedRoute';
 
 function App() {
-	const [isTimerReady, setIsTimerReady] = useState(true);
+	const [isTimerReady, setIsTimerReady] = useState(false);
 	const [isSaidYes, setIsSaidYes] = useState(false);
 
 	return (
