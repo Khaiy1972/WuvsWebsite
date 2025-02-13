@@ -34,15 +34,15 @@ function Header() {
 							</li>
 
 							<li>
-								<Link to={'/gallery'} className="">
+								<a href="#gallery" className="">
 									<Collections /> Gallery
-								</Link>
+								</a>
 							</li>
 
 							<li>
-								<Link to={'/messages'} className="">
-									<Inbox /> Messages
-								</Link>
+								<a href="#message" className="">
+									<Inbox /> Message
+								</a>
 							</li>
 						</ul>
 					</div>
