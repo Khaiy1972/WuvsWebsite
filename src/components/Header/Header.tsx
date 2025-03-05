@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useViewport } from '@src/libs';
 import { Link } from 'react-router-dom';
 
-import { Collections, Home, Inbox, MoreVert } from '@mui/icons-material';
+import { Collections, Home, Inbox, MoreVert, Camera } from '@mui/icons-material';
 
 function Header() {
 	const { viewportW } = useViewport();
@@ -44,6 +44,12 @@ function Header() {
 									<Inbox /> Message
 								</a>
 							</li>
+
+							<li>
+								<Link to={'/photobooth'}>
+									<Camera /> Photobooth
+								</Link>
+							</li>
 						</ul>
 					</div>
 				)}
@@ -76,6 +82,12 @@ function Header() {
 				<li>
 					<Link to={'/messages'} className="flex items-center gap-2">
 						<Inbox /> Messages
+					</Link>
+				</li>
+
+				<li>
+					<Link to={'/photobooth'}>
+						<Camera /> Photobooth
 					</Link>
 				</li>
 			</ul>

@@ -52,7 +52,7 @@ const Question: React.FC<QuestionProps> = ({ setIsSaidYes }) => {
 						style={{ height: `${noSize}rem`, width: `${noSize * 2}rem` }}
 						onClick={() => {
 							setIsSaidYes(true);
-							navigate('/home');
+							navigate('/');
 						}}
 					>
 						Yes

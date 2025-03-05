@@ -60,7 +60,7 @@ const Timer: React.FC<TimerProps> = ({ setIsTimerReady }) => {
 							</div>
 						))
 					) : (
-						<Navigate to="/home" />
+						<Navigate to="/" />
 					)}
 				</div>
 			</div>
