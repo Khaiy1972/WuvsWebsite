@@ -19,7 +19,7 @@ const KeyCode: React.FC = () => {
 		if (keyCode === '05022019') {
 			toast.success('Correct KeyCode');
 			sessionStorage.setItem('love', keyCode);
-			navigate('/timer');
+			navigate('/');
 			setKeyCode('');
 		} else {
 			toast.error('Incorrect KeyCode');

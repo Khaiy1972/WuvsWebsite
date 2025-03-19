@@ -49,8 +49,8 @@ const Photobooth: React.FC = () => {
 
 				<div className={`${images.length > 0 ? 'flex' : 'hidden'} mt-4 flex-col flex-wrap gap-4`}>
 					{images.map((img, index) => (
-						<div className="relative flex items-center gap-2">
-							<img key={index} src={img} alt={`captured-${index}`} className="h-auto w-40" />
+						<div className="relative flex items-center gap-2" key={index}>
+							<img key={index} src={img} alt={`captured-${index}`} className="h-24 w-40" />
 							<Button
 								className="text-background absolute top-4 right-4"
 								onClick={() => setImages((i) => i.filter((_, i) => i !== index))}

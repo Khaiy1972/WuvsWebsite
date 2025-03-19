@@ -3,16 +3,18 @@ import { useRef, useEffect } from 'react';
 interface CameraProps {
 	onCapture?: (imageData: string) => void;
 	triggerCapture?: boolean;
+	width?: number;
+	height?: number;
 }
 
-const Camera = ({ onCapture, triggerCapture }: CameraProps) => {
+const Camera = ({ onCapture, triggerCapture, width = 640, height = 480 }: CameraProps) => {
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
 	useEffect(() => {
 		const getVideo = async () => {
 			try {
-				const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+				const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user', width, height } });
 				if (videoRef.current) {
 					videoRef.current.srcObject = stream;
 				}
@@ -31,7 +33,7 @@ const Camera = ({ onCapture, triggerCapture }: CameraProps) => {
 				currentVideoRef.srcObject = null;
 			}
 		};
-	}, []);
+	}, [width, height]);
 
 	useEffect(() => {
 		if (triggerCapture) {
@@ -44,8 +46,8 @@ const Camera = ({ onCapture, triggerCapture }: CameraProps) => {
 			const canvas = canvasRef.current;
 			const context = canvas.getContext('2d');
 			if (context) {
-				canvas.width = videoRef.current.videoWidth;
-				canvas.height = videoRef.current.videoHeight;
+				canvas.width = width;
+				canvas.height = height;
 				context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
 				const imageData = canvas.toDataURL('image/png');
 				onCapture?.(imageData);
@@ -55,7 +57,12 @@ const Camera = ({ onCapture, triggerCapture }: CameraProps) => {
 
 	return (
 		<div>
-			<video ref={videoRef} autoPlay playsInline style={{ width: '100%', height: 'auto' }} />
+			<video
+				ref={videoRef}
+				autoPlay
+				playsInline
+				style={{ width: `${width}px`, height: `${height}px`, transform: 'scaleX(-1)' }}
+			/>
 			<canvas ref={canvasRef} style={{ display: 'none' }} />
 		</div>
 	);
