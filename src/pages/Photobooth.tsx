@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 // components
-import { Camera as CameraUI, Button, LayoutModal } from '@src/components';
+import { Camera as CameraUI, Button, LayoutModal, Input } from '@src/components';
 import { X, Trash2, Aperture, Film } from 'lucide-react';
 
 const Photobooth: React.FC = () => {
@@ -44,7 +44,7 @@ const Photobooth: React.FC = () => {
 			<h1 className="absolute top-32 z-10 font-bold text-primary">Photobooth</h1>
 
 			<section className="flex items-center justify-center gap-20 pt-10">
-				<div className="my-10 overflow-hidden rounded-lg bg-amber-100 shadow-lg">
+				<div className="my-10 overflow-hidden rounded-lg bg-primary shadow-lg">
 					<CameraUI
 						frameHeight={288}
 						frameWidth={480}
@@ -87,9 +87,37 @@ const Photobooth: React.FC = () => {
 			{images.length < 4 && (
 				<>
 					{countdown === null ? (
-						<Button className="rounded-full !px-10 py-8 text-xl font-semibold text-background" onClick={startCountdown}>
-							<Aperture size={25} /> Capture
-						</Button>
+						<>
+							<Button
+								className="rounded-full !px-10 py-8 text-xl font-semibold text-background"
+								onClick={startCountdown}
+							>
+								<Aperture size={25} /> Capture
+							</Button>
+
+							<div className="mt-20 w-1/3 cursor-pointer border-card">
+								<label className="font-semibold" htmlFor="imgInput">
+									All Images will be positioned at the center
+								</label>
+								<Input
+									className="cursor-pointer border-card bg-secondary"
+									id="imgInput"
+									type="file"
+									onChange={(e) => {
+										const file = e.target.files?.[0];
+										if (file) {
+											const reader = new FileReader();
+											reader.onloadend = () => {
+												if (reader.result) {
+													setImages((i) => [...i, reader.result as string]);
+												}
+											};
+											reader.readAsDataURL(file);
+										}
+									}}
+								/>
+							</div>
+						</>
 					) : (
 						<h1 className="text-background">{countdown !== null ? countdown : ''}</h1>
 					)}

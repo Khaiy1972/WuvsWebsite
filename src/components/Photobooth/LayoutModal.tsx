@@ -3,7 +3,7 @@ import { toPng } from 'html-to-image';
 import { HexColorPicker } from 'react-colorful';
 
 // components
-import { Button, Input } from '@src/components';
+import { Button, Input, ToggleButton } from '@src/components';
 import { Close } from '@mui/icons-material';
 
 import stamp from '@src/assets/icon/PhotoboothStamp@3x.png';
@@ -19,6 +19,18 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 	const [color, setColor] = useState<string>('#f6efe5');
 	const [fileName, setFileName] = useState<string>('photobooth-layout');
 	const [name, setName] = useState<string>('');
+	const [message, setMessage] = useState<string>('');
+
+	const [isInverted, setIsInverted] = React.useState(false);
+	const [isTextInverted, setIsTextInverted] = React.useState(false);
+
+	const handleToggleChange = (checked: boolean) => {
+		setIsInverted(checked);
+	};
+
+	const handleTextToggleChange = (checked: boolean) => {
+		setIsTextInverted(checked);
+	};
 
 	const handleSave = () => {
 		if (photoboothRef.current) {
@@ -71,10 +83,15 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 						{images.map((img, index) => (
 							<img key={index} src={img} alt={`captured-${index}`} className="h-24 w-40 object-cover" />
 						))}
-						{images.length === 3 && <div className="h-24 w-40"></div>}
-						<div className="relative flex h-24 w-40 items-center justify-center">
-							<img src={stamp} alt="" className="absolute h-4/5" />
-							<h4 className="-rotate-12" style={{ fontFamily: 'Ballet' }}>
+						{images.length === 3 && (
+							<div className={`h-24 w-40 overflow-y-hidden text-wrap ${isTextInverted && 'invert'}`}>{message}</div>
+						)}
+						<div className="relative flex h-24 w-40 items-center justify-center overflow-hidden">
+							<img src={stamp} alt="" className={`absolute h-11/12 opacity-60 ${isInverted && 'invert'}`} />
+							<h4
+								className={`-translate-x-1.5 translate-y-1 -rotate-12 transform font-semibold tracking-wider ${isInverted && 'invert'}`}
+								style={{ fontFamily: 'Ballet' }}
+							>
 								{name}
 							</h4>
 						</div>
@@ -142,15 +159,49 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 					</section>
 
 					<section className="flex w-full flex-col items-center justify-center gap-4 p-8">
+						<h3>Logo & Text</h3>
+
+						{images.length === 3 && (
+							<div className="flex items-center justify-center gap-4">
+								<label htmlFor="invertedLogo">Make message white</label>
+								<ToggleButton size="medium" checked={isTextInverted} onChange={handleTextToggleChange} />
+							</div>
+						)}
+
+						<div className="flex items-center justify-center gap-4">
+							<label htmlFor="invertedLogo">Make logo white</label>
+							<ToggleButton size="medium" checked={isInverted} onChange={handleToggleChange} />
+						</div>
+					</section>
+
+					<section className="flex w-full flex-col items-center justify-center gap-4 p-8">
 						<h3>Names</h3>
+
+						{images.length === 3 && (
+							<div className="w-full">
+								<label htmlFor="message">Message</label>
+								<Input
+									placeholder="Add a short message"
+									id="message"
+									value={message}
+									onChange={(e) => setMessage(e.target.value)}
+								/>
+							</div>
+						)}
 
 						<div className="w-full">
 							<label htmlFor="name">Name</label>
-							<Input placeholder="Add your name" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+							<Input
+								placeholder="Add your name"
+								maxLength={16}
+								id="name"
+								value={name}
+								onChange={(e) => setName(e.target.value)}
+							/>
 						</div>
 
 						<div className="w-full">
-							<label htmlFor="fileName">Name</label>
+							<label htmlFor="fileName">File Name</label>
 							<Input
 								placeholder="File Name"
 								id="fileName"

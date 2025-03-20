@@ -70,7 +70,7 @@ const Camera = ({
 				ref={videoRef}
 				autoPlay
 				playsInline
-				style={{ width: `${width}px`, height: `${height}px`, transform: 'scaleX(-1)' }}
+				style={{ width: `${width}px`, height: `${height}px` }}
 				className="absolute top-1/2 -translate-y-1/2 transform"
 			/>
 			<canvas ref={canvasRef} style={{ display: 'none' }} />
