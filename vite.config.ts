@@ -9,6 +9,7 @@ export default defineConfig({
 	base: '/WuvsWebsite/',
 	resolve: {
 		alias: {
+			'@': path.resolve(__dirname, './src'),
 			'@src': path.resolve(__dirname, './src'),
 		},
 	},

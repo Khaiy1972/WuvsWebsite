@@ -5,9 +5,18 @@ interface CameraProps {
 	triggerCapture?: boolean;
 	width?: number;
 	height?: number;
+	frameWidth?: number;
+	frameHeight?: number;
 }
 
-const Camera = ({ onCapture, triggerCapture, width = 640, height = 480 }: CameraProps) => {
+const Camera = ({
+	onCapture,
+	triggerCapture,
+	width = 640,
+	height = 480,
+	frameWidth = 640,
+	frameHeight = 480,
+}: CameraProps) => {
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -56,12 +65,13 @@ const Camera = ({ onCapture, triggerCapture, width = 640, height = 480 }: Camera
 	};
 
 	return (
-		<div>
+		<div style={{ width: `${frameWidth}px`, height: `${frameHeight}px`, position: 'relative' }}>
 			<video
 				ref={videoRef}
 				autoPlay
 				playsInline
 				style={{ width: `${width}px`, height: `${height}px`, transform: 'scaleX(-1)' }}
+				className="absolute top-1/2 -translate-y-1/2 transform"
 			/>
 			<canvas ref={canvasRef} style={{ display: 'none' }} />
 		</div>

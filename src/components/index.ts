@@ -13,3 +13,4 @@ export { default as KeyPad } from './Button/KeyPad';
 
 // shadcn
 export { default as Button } from './ui/button';
+export { default as Input } from './ui/input';
