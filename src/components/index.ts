@@ -7,6 +7,7 @@ export { default as Envelope } from './Card/Envelope/Envelope';
 // Unique Components - Photobooth
 export { default as Camera } from './Photobooth/Camera';
 export { default as LayoutModal } from './Photobooth/LayoutModal';
+export { default as PreviewPhoto } from './Photobooth/PreviewPhoto';
 
 // buttons
 export { default as KeyPad } from './Button/KeyPad';
