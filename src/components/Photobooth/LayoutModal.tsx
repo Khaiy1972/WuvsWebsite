@@ -55,7 +55,7 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 
 	return (
 		<div className="fixed top-0 left-0 z-20 flex h-screen w-screen items-center justify-center bg-black/30">
-			<div className="relative grid h-3/4 w-1/2 grid-cols-1 items-center justify-center gap-2 overflow-hidden rounded-xl bg-background px-4 py-3 md:grid-cols-[1fr_2fr]">
+			<div className="relative grid h-3/4 w-1/2 grid-cols-1 items-center justify-center gap-2 overflow-hidden rounded-xl bg-background px-8 py-8 md:grid-cols-[1fr_2fr]">
 				<svg className="absolute top-0 -left-32 z-0 h-full fill-primary" id="visual" viewBox="0 0 960 540">
 					<g transform="translate(960, 540)">
 						<path d="M-297 0C-270.1 -28.2 -243.2 -56.5 -233.7 -96.8C-224.3 -137.1 -232.4 -189.5 -210 -210C-187.6 -230.5 -134.6 -219 -94.5 -228.2C-54.4 -237.4 -27.2 -267.2 0 -297L0 0Z"></path>
@@ -99,7 +99,7 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 				</div>
 
 				{/* right side */}
-				<div className="z-10 flex h-full min-h-full w-full flex-col items-center justify-evenly overflow-y-scroll">
+				<div className="z-10 flex h-full min-h-full w-full flex-col items-center justify-evenly overflow-y-scroll pb-20">
 					<section className="flex flex-col items-center justify-center gap-4 p-8">
 						<h3>Color Presets</h3>
 						<h5>Preset # 1</h5>
@@ -151,7 +151,7 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 							<HexColorPicker color={color} onChange={setColor}></HexColorPicker>
 						</div>
 						<Input
-							className="ring-ring"
+							className="bg-background ring-ring"
 							placeholder="Custom Color"
 							value={color}
 							onChange={(e) => setColor(e.target.value)}
@@ -162,25 +162,26 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 						<h3>Logo & Text</h3>
 
 						{images.length === 3 && (
-							<div className="flex items-center justify-center gap-4">
+							<div className="flex w-full items-center justify-between gap-4">
 								<label htmlFor="invertedLogo">Make message white</label>
 								<ToggleButton size="medium" checked={isTextInverted} onChange={handleTextToggleChange} />
 							</div>
 						)}
 
-						<div className="flex items-center justify-center gap-4">
+						<div className="flex w-full items-center justify-between gap-4">
 							<label htmlFor="invertedLogo">Make logo white</label>
 							<ToggleButton size="medium" checked={isInverted} onChange={handleToggleChange} />
 						</div>
 					</section>
 
-					<section className="flex w-full flex-col items-center justify-center gap-4 p-8">
+					<section className="z-20 flex w-full flex-col items-center justify-center gap-4 p-8">
 						<h3>Names</h3>
 
 						{images.length === 3 && (
 							<div className="w-full">
 								<label htmlFor="message">Message</label>
 								<Input
+									className="bg-background"
 									placeholder="Add a short message"
 									id="message"
 									value={message}
@@ -192,6 +193,7 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 						<div className="w-full">
 							<label htmlFor="name">Name</label>
 							<Input
+								className="bg-background"
 								placeholder="Add your name"
 								maxLength={16}
 								id="name"
@@ -203,6 +205,7 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 						<div className="w-full">
 							<label htmlFor="fileName">File Name</label>
 							<Input
+								className="bg-background"
 								placeholder="File Name"
 								id="fileName"
 								value={fileName}
@@ -211,7 +214,9 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 						</div>
 					</section>
 
-					<Button onClick={handleSave}>Save</Button>
+					<Button className="rounded-2xl px-20 py-5 text-xl font-semibold text-background" onClick={handleSave}>
+						Save
+					</Button>
 				</div>
 			</div>
 		</div>

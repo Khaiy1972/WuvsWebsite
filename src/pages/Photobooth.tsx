@@ -43,7 +43,8 @@ const Photobooth: React.FC = () => {
 
 			<h1 className="absolute top-32 z-10 font-bold text-primary">Photobooth</h1>
 
-			<section className="flex items-center justify-center gap-20 pt-10">
+			{/* camera */}
+			<section className="flex items-center justify-center gap-10 pt-20">
 				<div className="my-10 overflow-hidden rounded-lg bg-primary shadow-lg">
 					<CameraUI
 						frameHeight={288}
