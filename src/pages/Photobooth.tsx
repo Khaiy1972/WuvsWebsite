@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useViewport } from '@/libs';
 
 // components
 import { Camera as CameraUI, Button, LayoutModal, Input } from '@src/components';
+
+// icons
 import { X, Trash2, Aperture, Film } from 'lucide-react';
 
 const Photobooth: React.FC = () => {
+	const { viewportW } = useViewport();
 	const [capturedImage, setCapturedImage] = useState<boolean>(false);
 	const [isDisplayLayout, setIsDisplayLayout] = useState(false);
 	const [countdown, setCountdown] = useState<number | null>(null);
@@ -30,10 +34,10 @@ const Photobooth: React.FC = () => {
 	};
 
 	return (
-		<div className="relative flex h-screen w-screen flex-col items-center justify-center bg-chart-4 py-30">
+		<div className="relative flex min-h-screen w-screen flex-col items-center justify-center bg-chart-4 py-30 md:h-screen">
 			{isDisplayLayout && <LayoutModal images={images} onClose={() => setIsDisplayLayout(false)} />}
 
-			<svg className="absolute top-0 w-full fill-background" viewBox="0 30 960 170" width="960">
+			<svg className="absolute top-headerHeight w-full fill-background md:top-0" viewBox="0 30 960 170" width="960">
 				<path
 					d="M0 105L20 114.3C40 123.7 80 142.3 120 138.3C160 134.3 200 107.7 240 104.2C280 100.7 320 120.3 360 136.3C400 152.3 440 164.7 480 166.7C520 168.7 560 160.3 600 136.2C640 112 680 72 720 66C760 60 800 88 840 106C880 124 920 132 940 136L960 140L960 0L940 0C920 0 880 0 840 0C800 0 760 0 720 0C680 0 640 0 600 0C560 0 520 0 480 0C440 0 400 0 360 0C320 0 280 0 240 0C200 0 160 0 120 0C80 0 40 0 20 0L0 0Z"
 					strokeLinecap="round"
@@ -41,14 +45,14 @@ const Photobooth: React.FC = () => {
 				></path>
 			</svg>
 
-			<h1 className="absolute top-32 z-10 font-bold text-primary">Photobooth</h1>
+			<h1 className="absolute top-32 z-10 font-bold text-background md:text-primary">Photobooth</h1>
 
 			{/* camera */}
-			<section className="flex items-center justify-center gap-10 pt-20">
+			<section className="flex flex-col items-center justify-center gap-4 pt-20 pb-10 md:flex-row md:pb-0">
 				<div className="my-10 overflow-hidden rounded-lg bg-primary shadow-lg">
 					<CameraUI
-						frameHeight={288}
-						frameWidth={480}
+						frameHeight={viewportW < 768 ? 288 / 2 : 288}
+						frameWidth={viewportW < 768 ? 480 / 2 : 480}
 						triggerCapture={capturedImage}
 						onCapture={(img) => {
 							setImages((i) => [...i, img]);
@@ -96,7 +100,7 @@ const Photobooth: React.FC = () => {
 								<Aperture size={25} /> Capture
 							</Button>
 
-							<div className="mt-20 w-1/3 cursor-pointer border-card">
+							<div className="mt-20 cursor-pointer border-card md:w-1/3">
 								<label className="font-semibold" htmlFor="imgInput">
 									All Images will be positioned at the center
 								</label>

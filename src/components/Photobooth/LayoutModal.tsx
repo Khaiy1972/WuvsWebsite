@@ -23,6 +23,7 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 
 	const [isInverted, setIsInverted] = React.useState(false);
 	const [isTextInverted, setIsTextInverted] = React.useState(false);
+	const [isRounded, setIsRounded] = React.useState(false);
 
 	const handleToggleChange = (checked: boolean) => {
 		setIsInverted(checked);
@@ -30,6 +31,10 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 
 	const handleTextToggleChange = (checked: boolean) => {
 		setIsTextInverted(checked);
+	};
+
+	const handleRoundedToggleChange = (checked: boolean) => {
+		setIsRounded(checked);
 	};
 
 	const handleSave = () => {
@@ -55,7 +60,7 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 
 	return (
 		<div className="fixed top-0 left-0 z-20 flex h-screen w-screen items-center justify-center bg-black/30">
-			<div className="relative grid h-3/4 w-1/2 grid-cols-1 items-center justify-center gap-2 overflow-hidden rounded-xl bg-background px-8 py-8 md:grid-cols-[1fr_2fr]">
+			<div className="relative flex h-10/12 w-11/12 flex-col gap-10 overflow-hidden overflow-y-scroll rounded-xl bg-background p-4 md:grid md:h-3/4 md:w-1/2 md:grid-cols-[1fr_2fr] md:items-center md:justify-center md:gap-2 md:p-8">
 				<svg className="absolute top-0 -left-32 z-0 h-full fill-primary" id="visual" viewBox="0 0 960 540">
 					<g transform="translate(960, 540)">
 						<path d="M-297 0C-270.1 -28.2 -243.2 -56.5 -233.7 -96.8C-224.3 -137.1 -232.4 -189.5 -210 -210C-187.6 -230.5 -134.6 -219 -94.5 -228.2C-54.4 -237.4 -27.2 -267.2 0 -297L0 0Z"></path>
@@ -66,7 +71,7 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 				</svg>
 				<Button
 					variant={'ghost'}
-					className="absolute top-4 right-4 z-20 aspect-square h-12 rounded-full"
+					className="fixed top-4 right-4 z-20 aspect-square h-12 rounded-full bg-primary text-background md:absolute md:bg-transparent md:text-foreground"
 					onClick={onClose}
 				>
 					<Close />
@@ -81,10 +86,17 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 						style={{ width: '2in', height: '6in', backgroundColor: color }}
 					>
 						{images.map((img, index) => (
-							<img key={index} src={img} alt={`captured-${index}`} className="h-24 w-40 object-cover" />
+							<img
+								key={index}
+								src={img}
+								alt={`captured-${index}`}
+								className={`h-24 w-40 object-cover ${isRounded && 'rounded-xl'}`}
+							/>
 						))}
 						{images.length === 3 && (
-							<div className={`h-24 w-40 overflow-y-hidden text-wrap ${isTextInverted && 'invert'}`}>{message}</div>
+							<div className={`h-24 w-40 overflow-y-hidden text-center text-wrap ${isTextInverted && 'invert'}`}>
+								{message}
+							</div>
 						)}
 						<div className="relative flex h-24 w-40 items-center justify-center overflow-hidden">
 							<img src={stamp} alt="" className={`absolute h-11/12 opacity-60 ${isInverted && 'invert'}`} />
@@ -99,7 +111,8 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 				</div>
 
 				{/* right side */}
-				<div className="z-10 flex h-full min-h-full w-full flex-col items-center justify-evenly overflow-y-scroll pb-20">
+				<div className="z-10 flex h-full min-h-96 w-full flex-col items-center justify-evenly overflow-y-scroll rounded-2xl bg-accent pb-20 md:min-h-full md:bg-transparent">
+					{/* color Preset */}
 					<section className="flex flex-col items-center justify-center gap-4 p-8">
 						<h3>Color Presets</h3>
 						<h5>Preset # 1</h5>
@@ -144,11 +157,14 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 						</div>
 					</section>
 
+					{/* custom color */}
 					<section className="grid w-full gap-4 p-8">
 						<h3 className="text-center">Custom Color</h3>
 
-						<div className="picker">
-							<HexColorPicker color={color} onChange={setColor}></HexColorPicker>
+						<div className="mx-auto w-2/3">
+							<div className="picker">
+								<HexColorPicker color={color} onChange={setColor}></HexColorPicker>
+							</div>
 						</div>
 						<Input
 							className="bg-background ring-ring"
@@ -158,6 +174,7 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 						/>
 					</section>
 
+					{/* toggles */}
 					<section className="flex w-full flex-col items-center justify-center gap-4 p-8">
 						<h3>Logo & Text</h3>
 
@@ -171,6 +188,11 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 						<div className="flex w-full items-center justify-between gap-4">
 							<label htmlFor="invertedLogo">Make logo white</label>
 							<ToggleButton size="medium" checked={isInverted} onChange={handleToggleChange} />
+						</div>
+
+						<div className="flex w-full items-center justify-between gap-4">
+							<label htmlFor="invertedLogo">Make photos rounded</label>
+							<ToggleButton size="medium" checked={isRounded} onChange={handleRoundedToggleChange} />
 						</div>
 					</section>
 

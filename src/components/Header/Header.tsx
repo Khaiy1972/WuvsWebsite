@@ -12,7 +12,7 @@ function Header() {
 	if (viewportW < 640)
 		// mobile view
 		return (
-			<header className="fixed top-0 left-0 z-10 flex w-screen flex-col items-center bg-primary px-4 shadow-md transition-all">
+			<header className="fixed top-0 left-0 z-20 flex w-screen flex-col items-center bg-sidebar px-4 shadow-md transition-all">
 				<div className="bg-b my-4 flex w-full items-center">
 					<svg className="fill-primary" width="38" height="33" viewBox="0 0 38 33" xmlns="http://www.w3.org/2000/svg">
 						<path d="M10.6587 27.0975C10.0942 26.6228 9.81507 26.384 9.26712 25.8991C5.3834 20.5347 -4.10753 9.50639 1.99322 2.73943C2.89043 1.89425 3.93823 1.17049 5.08853 0.714C3.69777 3.37253 3.55191 6.31489 3.91458 9.23833C4.22679 5.90649 5.29352 2.95231 7.09189 0.136881C8.01039 -0.02159 8.94939 -0.0397235 9.8742 0.0682891C8.95097 3.2795 8.79013 6.49938 9.06292 9.81939C9.48867 6.52934 10.4103 3.46872 11.9422 0.523992C13.0972 0.920564 14.2136 1.50399 15.1463 2.2995C11.6765 10.8167 11.7774 20.4322 13.4465 29.3539C12.8615 28.8958 12.5729 28.6672 11.9942 28.1989C10.5026 24.6423 8.99118 21.089 7.64378 17.4749C8.24061 20.8154 9.24899 24.0116 10.6587 27.0975Z" />
@@ -20,35 +20,35 @@ function Header() {
 						<path d="M27.4556 0.0580444C30.4555 9.67354 26.7089 20.1011 23.9763 29.3476C23.3345 29.8538 22.6888 30.356 22.0399 30.8527C22.5122 22.4088 21.8933 13.7228 19.7827 5.51781C20.3512 4.33755 21.1569 3.23062 22.159 2.37835C23.4827 5.31124 24.1805 8.49407 24.6393 11.6635C24.7513 8.14638 24.5739 4.67657 23.765 1.24303C24.8987 0.623337 26.1633 0.184191 27.4556 0.0580444Z" />
 						<path d="M36.0666 3.58775C37.5079 5.77954 37.3778 8.45463 36.8322 10.8987C36.6785 9.59625 36.3103 6.78713 34.7476 6.36139C34.3109 6.24234 34.1611 6.77137 34.2068 7.91851C34.221 8.27566 34.2982 8.647 34.4331 9.03175C34.5679 9.41728 34.955 10.0606 35.3989 10.8845C35.7931 11.6177 36.1691 12.4148 36.3331 13.2537C36.4719 13.9664 36.3576 14.8928 36.1289 15.5685C35.7797 16.6005 35.2349 17.5616 34.6388 18.4698C33.3971 20.362 31.7824 22.0477 30.2221 23.7104C29.2792 24.7157 28.3717 25.795 27.3768 26.7308C26.6625 27.4026 26.34 27.3963 26.1626 26.5944C27.3965 23.6103 28.5941 20.6151 29.6458 17.5616C29.5764 18.5061 29.4771 19.464 29.5354 20.4038C29.5741 21.0353 29.6994 21.2939 29.973 21.1946C30.107 21.1457 30.2797 20.9707 30.4965 20.6695C30.7125 20.3683 30.9128 20.0254 31.0847 19.6351C31.2471 19.2669 31.3511 18.924 31.3898 18.6039C31.4292 18.2838 31.3559 17.858 31.1067 17.3203C30.8844 16.8402 30.6763 16.3419 30.5288 15.8397C30.3104 15.0986 30.2742 14.2794 30.2135 13.5123C30.1007 12.0932 30.152 10.6354 30.1346 9.21703C30.1055 6.76821 29.567 4.01034 29.9454 1.73262C30.1685 0.389159 30.789 -0.0507756 32.0891 0.37891C33.5824 0.871668 34.9211 2.39173 36.0666 3.58775Z" />
 					</svg>
-					<h1 className="font-caprasimo ml-4 text-4xl text-gray-800">Wuvs</h1>
+					<h1 className="font-caprasimo ml-4 text-4xl">Wuvs</h1>
 					<button className="ml-auto" onClick={() => setShowMenu(!showMenu)}>
 						<MoreVert />
 					</button>
 				</div>
 				{showMenu && (
-					<div className="flex h-15 w-full flex-col justify-evenly">
-						<div className="h-0.5 w-full border-t-1 border-t-blue-500"></div>
-						<ul className="flex items-center justify-evenly">
+					<div className="flex h-20 w-full flex-col justify-evenly">
+						<div className="h-0.5 w-full border-t-1 border-t-sidebar-primary"></div>
+						<ul className="flex items-center justify-evenly pt-1">
 							<li>
-								<Link to={'/'} className="">
+								<Link to={'/'} className="flex flex-col items-center">
 									<Home /> Home
 								</Link>
 							</li>
 
 							<li>
-								<a href="#gallery" className="">
+								<a href="#gallery" className="flex flex-col items-center">
 									<Images /> Gallery
 								</a>
 							</li>
 
 							<li>
-								<a href="#message" className="">
+								<a href="#message" className="flex flex-col items-center">
 									<Inbox /> Message
 								</a>
 							</li>
 
 							<li>
-								<Link to={'/photobooth'}>
+								<Link className="flex flex-col items-center" to={'/photobooth'}>
 									<Aperture /> Photobooth
 								</Link>
 							</li>
