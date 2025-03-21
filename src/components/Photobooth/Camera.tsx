@@ -9,14 +9,7 @@ interface CameraProps {
 	frameHeight?: number;
 }
 
-const Camera = ({
-	onCapture,
-	triggerCapture,
-	width = 640,
-	height = 480,
-	frameWidth = 640,
-	frameHeight = 480,
-}: CameraProps) => {
+const Camera = ({ onCapture, triggerCapture, width, height, frameWidth = 640, frameHeight = 480 }: CameraProps) => {
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -55,8 +48,9 @@ const Camera = ({
 			const canvas = canvasRef.current;
 			const context = canvas.getContext('2d');
 			if (context) {
-				canvas.width = width;
-				canvas.height = height;
+				canvas.width = width ?? videoRef.current.videoWidth;
+				canvas.height = height ?? videoRef.current.videoHeight;
+
 				context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
 				const imageData = canvas.toDataURL('image/png');
 				onCapture?.(imageData);
