@@ -1,6 +1,5 @@
 // libraries
 import React from 'react';
-import { Favorite, ExpandMore } from '@mui/icons-material';
 
 // components
 import { PhotoMessageCard, Envelope } from '@src/components';
@@ -8,24 +7,25 @@ import { PhotoMessageCard, Envelope } from '@src/components';
 // images
 import { kathPhotos, nickoPhotos } from '@src/libs/utils';
 import background from '@src/assets/images/background.png';
+import { ChevronDown, Heart } from 'lucide-react';
 
 const Home: React.FC = () => {
 	return (
 		<div className="relative">
 			<section className="relative flex h-screen w-screen items-center justify-center bg-(--color-background)/60 text-center text-6xl text-(--color-text)">
-				<div className="bg-card w-[95vw] rounded-2xl p-8 shadow-lg md:w-auto">
-					<h1 className="text-primary text-6xl font-bold">
-						Happy Valentine's Day! <Favorite sx={{ fontSize: 70 }} />
+				<div className="w-[95vw] rounded-2xl bg-card p-8 shadow-lg md:w-auto">
+					<h1 className="flex items-center gap-6 text-6xl font-bold text-primary">
+						Happy Anniversarry Mahal! <Heart size={60} />
 					</h1>
 				</div>
 				<img src={background} alt="background" className="fixed top-0 left-0 -z-10 h-screen w-screen object-cover" />
-				<div className="absolute bottom-14">
-					<p className="text-primary text-xl font-semibold">Scroll Down</p>
-					<ExpandMore sx={{ fontSize: 50 }} className="text-primary animate-bounce" />
+				<div className="absolute bottom-14 flex flex-col items-center gap-4">
+					<p className="text-2xl font-semibold text-primary">Scroll Down</p>
+					<ChevronDown size={40} className="animate-bounce text-primary" />
 				</div>
 			</section>
 
-			<section id="message" className="bg-background flex w-screen flex-col items-center gap-10 p-4 md:gap-4">
+			<section id="message" className="flex w-screen flex-col items-center gap-10 bg-background p-4 md:gap-4">
 				<Envelope
 					addressTo="Dear Wuvs"
 					message={`   Thank you my love for being my valentine's! I know valentine's day are one of the most
@@ -37,7 +37,7 @@ const Home: React.FC = () => {
 				/>
 			</section>
 
-			<section id="gallery" className="bg-background flex flex-col items-center gap-10 p-4 pt-20 md:gap-4">
+			<section id="gallery" className="flex flex-col items-center gap-10 bg-background p-4 pt-20 md:gap-4">
 				<PhotoMessageCard
 					photoSRC={nickoPhotos[0]}
 					label={'My thoughts'}

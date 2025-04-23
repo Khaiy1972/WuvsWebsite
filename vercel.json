@@ -1,0 +1,4 @@
+{
+	"rewrites": [{ "source": "/WuvsWebsite(/.*)?", "destination": "/index.html" }],
+	"cleanUrls": true
+}

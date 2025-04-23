@@ -4,10 +4,10 @@ import { Header } from '@src/components';
 
 const HomeLayout = () => {
 	return (
-		<div className="flex min-h-screen w-screen flex-col">
+		<div className="mt-headerHeight flex min-h-screen w-screen flex-col">
 			<Header />
 
-			<Outlet></Outlet>
+			<Outlet />
 		</div>
 	);
 };

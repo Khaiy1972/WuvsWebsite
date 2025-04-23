@@ -1,13 +1,12 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
-type ProtectedRouteProps = {
-	// isTimerReady: boolean;
-	// isSaidYes: boolean;
-	children: React.ReactNode;
-};
+// type ProtectedRouteProps = {
+// 	// isTimerReady: boolean;
+// 	// isSaidYes: boolean;
+// 	// children: React.ReactNode;
+// };
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ /*isTimerReady, isSaidYes,*/ children }) => {
+const ProtectedRoute = (/*isTimerReady, isSaidYes,*/) => {
 	const sessionKey = sessionStorage.getItem('love');
 	const expectedHash = '05022019'; // Replace with your actual hash code
 
@@ -33,7 +32,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ /*isTimerReady, isSaidY
 	// 	);
 	// }
 
-	return children;
+	return <Outlet />;
 };
 
 export default ProtectedRoute;

@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HomeLayout } from '@src/layouts';
 
 // pages
-import { Home, KeyCode, Photobooth /* Question, Timer*/ } from '@src/pages';
+import { Gallery, Home, KeyCode, Photobooth /* Question, Timer*/ } from '@src/pages';
 import ProtectedRoute from './libs/functions/ProtectedRoute';
 
 function App() {
@@ -10,9 +10,9 @@ function App() {
 	// const [isSaidYes, setIsSaidYes] = useState(false);
 
 	return (
-		<BrowserRouter basename="/WuvsWebsite/">
+		<BrowserRouter basename="/WuvsWebsite">
 			<Routes>
-				<Route path="/code" element={<KeyCode />}></Route>
+				<Route path="/code" element={<KeyCode />} />
 				{/* <Route
 					path="/timer"
 					element={
@@ -31,16 +31,12 @@ function App() {
 					}
 				/> */}
 
-				<Route
-					path="/"
-					element={
-						<ProtectedRoute /*isTimerReady={isTimerReady} isSaidYes={isSaidYes}*/>
-							<HomeLayout />
-						</ProtectedRoute>
-					}
-				>
-					<Route index element={<Home />} />
-					<Route path="/photobooth" element={<Photobooth />} />
+				<Route path="/" element={<ProtectedRoute />}>
+					<Route element={<HomeLayout />}>
+						<Route index element={<Home />} />
+						<Route path="/photobooth" element={<Photobooth />} />
+						<Route path="/gallery" element={<Gallery />} />
+					</Route>
 				</Route>
 			</Routes>
 		</BrowserRouter>

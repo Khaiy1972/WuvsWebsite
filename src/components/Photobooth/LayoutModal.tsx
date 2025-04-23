@@ -4,9 +4,10 @@ import { HexColorPicker } from 'react-colorful';
 
 // components
 import { Button, Input, ToggleButton } from '@src/components';
-import { Close } from '@mui/icons-material';
+// import { Close } from '@mui/icons-material';
 
 import stamp from '@src/assets/icon/PhotoboothStamp@3x.png';
+import { X } from 'lucide-react';
 
 interface LayoutModalProps {
 	images: string[];
@@ -74,7 +75,7 @@ const LayoutModal: React.FC<LayoutModalProps> = ({ images, onClose }) => {
 					className="fixed top-4 right-4 z-20 aspect-square h-12 rounded-full bg-primary text-background md:absolute md:bg-transparent md:text-foreground"
 					onClick={onClose}
 				>
-					<Close />
+					<X />
 				</Button>
 
 				{/* layout side */}
