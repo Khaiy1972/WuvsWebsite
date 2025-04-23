@@ -1,6 +1,3 @@
-// libraries
-import React from 'react';
-
 // components
 import { PhotoMessageCard, Envelope } from '@src/components';
 
@@ -9,7 +6,7 @@ import { kathPhotos, nickoPhotos } from '@src/libs/utils';
 import background from '@src/assets/images/background.png';
 import { ChevronDown, Heart } from 'lucide-react';
 
-const Home: React.FC = () => {
+const Home = () => {
 	return (
 		<div className="relative">
 			<section className="relative flex h-screen w-screen items-center justify-center bg-(--color-background)/60 text-center text-6xl text-(--color-text)">
