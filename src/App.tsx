@@ -10,7 +10,7 @@ function App() {
 	// const [isSaidYes, setIsSaidYes] = useState(false);
 
 	return (
-		<BrowserRouter basename="/WuvsWebsite">
+		<BrowserRouter>
 			<Routes>
 				<Route path="/code" element={<KeyCode />} />
 				{/* <Route
